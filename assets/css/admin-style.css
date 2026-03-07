@@ -1,0 +1,404 @@
+/* ==========================================================================
+   GoPayFast Admin Dashboard - Minimalist Professional
+   Clean, focused, elegant
+   ========================================================================== */
+
+/* ----- Variables ----- */
+:root {
+  --gpf-primary: #0d9488;
+  --gpf-primary-dark: #0f766e;
+  --gpf-text: #1f2937;
+  --gpf-text-light: #6b7280;
+  --gpf-border: #e5e7eb;
+  --gpf-border-hover: #d1d5db;
+  --gpf-bg: #f9fafb;
+  --gpf-white: #ffffff;
+  --gpf-radius: 4px;
+  --gpf-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --gpf-transition: 150ms ease;
+}
+
+/* ----- Base ----- */
+.gpf-wrap {
+  max-width: 100%;
+  margin: 0;
+  padding: 20px 20px 40px 0;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--gpf-text);
+  line-height: 1.6;
+}
+
+/* ----- Header ----- */
+.gpf-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 24px;
+  margin-bottom: 32px;
+  border-bottom: 1px solid var(--gpf-border);
+}
+
+.gpf-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.gpf-brand .dashicons {
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+  color: var(--gpf-primary);
+}
+
+.gpf-brand h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+  color: var(--gpf-text);
+  letter-spacing: -0.01em;
+}
+
+.gpf-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.gpf-version {
+  font-size: 13px;
+  color: var(--gpf-text-light);
+  font-weight: 500;
+}
+
+.gpf-status {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: var(--gpf-radius);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.gpf-status.active {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.gpf-status.inactive {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* ----- Layout ----- */
+.gpf-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+@media (min-width: 900px) {
+  .gpf-layout {
+    grid-template-columns: 1fr 320px;
+  }
+}
+
+/* ----- Panels ----- */
+.gpf-panel {
+  background: var(--gpf-white);
+  border: 1px solid var(--gpf-border);
+  border-radius: var(--gpf-radius);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.gpf-panel:last-child {
+  margin-bottom: 0;
+}
+
+.gpf-panel h2 {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--gpf-text-light);
+  margin: 0 0 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--gpf-border);
+}
+
+/* ----- Fields ----- */
+.gpf-field {
+  margin-bottom: 20px;
+}
+
+.gpf-field:last-child {
+  margin-bottom: 0;
+}
+
+.gpf-field label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gpf-text);
+  margin-bottom: 8px;
+}
+
+.gpf-field input[type='text'],
+.gpf-field input[type='url'],
+.gpf-field input[type='number'],
+.gpf-field input[type='password'] {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  color: var(--gpf-text);
+  background: var(--gpf-white);
+  border: 1px solid var(--gpf-border);
+  border-radius: var(--gpf-radius);
+  transition: var(--gpf-transition);
+}
+
+.gpf-field input.small-text {
+  max-width: 140px;
+}
+
+.gpf-field input:focus {
+  outline: none;
+  border-color: var(--gpf-primary);
+  box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.1);
+}
+
+.gpf-field input::placeholder {
+  color: #9ca3af;
+}
+
+/* ----- Input with toggle ----- */
+.gpf-input-wrap {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.gpf-input-wrap input {
+  width: 100%;
+  padding-right: 44px;
+}
+
+.gpf-toggle {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 6px;
+  cursor: pointer;
+  color: var(--gpf-text-light);
+  opacity: 0.6;
+  transition: var(--gpf-transition);
+}
+
+.gpf-toggle:hover {
+  opacity: 1;
+  color: var(--gpf-text);
+}
+
+.gpf-toggle .dashicons {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+/* ----- Row layout ----- */
+.gpf-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.gpf-row .gpf-field {
+  flex: 1;
+  min-width: 140px;
+}
+
+/* ----- Checkbox ----- */
+.gpf-field-inline label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-weight: 400;
+}
+
+.gpf-field-inline input[type='checkbox'] {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--gpf-primary);
+  cursor: pointer;
+}
+
+/* ----- Button ----- */
+.gpf-actions {
+  margin-top: 8px;
+}
+
+.gpf-btn {
+  background: linear-gradient(135deg, #1f2937 0%, #000000 100%) !important;
+  border: none !important;
+  padding: 8px 20px !important;
+  height: auto !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  border-radius: var(--gpf-radius) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15) !important;
+  transition: var(--gpf-transition) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.gpf-btn:hover {
+  background: linear-gradient(135deg, #000000 0%, #1f2937 100%) !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+  transform: translateY(-1px);
+}
+
+.gpf-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* ----- Sidebar Boxes ----- */
+.gpf-aside {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.gpf-box {
+  background: var(--gpf-white);
+  border: 1px solid var(--gpf-border);
+  border-radius: var(--gpf-radius);
+  padding: 20px;
+}
+
+.gpf-box h3 {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gpf-text-light);
+  margin: 0 0 16px;
+}
+
+/* ----- Shortcode with copy ----- */
+.gpf-shortcode {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.gpf-shortcode code {
+  flex: 1;
+  font-family: 'SF Mono', Monaco, monospace;
+  font-size: 13px;
+  padding: 8px 12px;
+  background: var(--gpf-bg);
+  border: 1px solid var(--gpf-border);
+  border-radius: var(--gpf-radius);
+  color: var(--gpf-text);
+}
+
+.gpf-copy {
+  padding: 6px 16px;
+  background: #fff;
+  border: 1px solid var(--gpf-border);
+  border-radius: var(--gpf-radius);
+  cursor: pointer;
+  color: var(--gpf-text-light);
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.15s ease;
+  min-width: 70px;
+}
+
+.gpf-copy:hover {
+  background: var(--gpf-bg);
+  border-color: var(--gpf-border-hover);
+  color: var(--gpf-text);
+}
+
+.gpf-box p {
+  font-size: 13px;
+  color: var(--gpf-text-light);
+  margin: 0 0 16px;
+}
+
+.gpf-box p:last-child {
+  margin-bottom: 0;
+}
+
+.gpf-box a {
+  display: block;
+  font-size: 14px;
+  color: var(--gpf-primary);
+  text-decoration: none;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--gpf-border);
+  transition: var(--gpf-transition);
+}
+
+.gpf-box a:last-child {
+  border-bottom: none;
+}
+
+.gpf-box a:hover {
+  color: var(--gpf-primary-dark);
+  padding-left: 4px;
+}
+
+/* ----- Footer -----
+.gpf-footer {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--gpf-border);
+}
+
+.gpf-footer p {
+  font-size: 13px;
+  color: var(--gpf-text-light);
+  margin: 0;
+}
+
+.gpf-footer a {
+  color: var(--gpf-primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.gpf-footer a:hover {
+  color: var(--gpf-primary-dark);
+  text-decoration: underline;
+}
+
+/* ----- Notices ----- */
+.gpf-wrap .notice {
+  margin-bottom: 24px;
+  border-radius: var(--gpf-radius);
+  border-left-width: 3px;
+}
+
+/* ----- Responsive ----- */
+@media (max-width: 782px) {
+  .gpf-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .gpf-panel {
+    padding: 20px;
+  }
+}

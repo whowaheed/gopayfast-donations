@@ -31,7 +31,7 @@ require_once( GPF_PLUGIN_PATH . 'includes/result-handler.php' );
 
 // Admin-only files
 if ( is_admin() ) {
-    require_once( GPF_PLUGIN_PATH . 'includes/admin-settings.php' );
+    require_once( GPF_PLUGIN_PATH . 'includes/admin-dashboard.php' );
 }
 
 /**
