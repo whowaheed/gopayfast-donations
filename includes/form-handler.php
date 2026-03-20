@@ -54,9 +54,18 @@ function gpf_handle_donation_submission() {
     }
     
     // SECURITY CHECK 5: Nonce verification (CSRF protection)
-    if ( ! isset( $_POST['gpf_donate_nonce'] ) || ! wp_verify_nonce( $_POST['gpf_donate_nonce'], 'gpf_donate_action' ) ) {
-        gpf_log_security_event('invalid_nonce');
-        wp_die( 'Security check failed. Please refresh the page and try again.', 'Security Error', ['response' => 403] );
+    if ( ! isset( $_POST['gpf_donate_nonce'] ) ) {
+        gpf_log_security_event('missing_nonce');
+        wp_die( 'Security check failed: Nonce is missing. Please refresh the page and try again.', 'Security Error', ['response' => 403] );
+    }
+    
+    if ( ! wp_verify_nonce( $_POST['gpf_donate_nonce'], 'gpf_donate_action' ) ) {
+        gpf_log_security_event('invalid_nonce', [
+            'submitted_nonce' => substr($_POST['gpf_donate_nonce'], 0, 10) . '...',
+            'user_id' => get_current_user_id(),
+            'user_logged_in' => is_user_logged_in()
+        ]);
+        wp_die( 'Security check failed: Invalid or expired nonce. This usually happens when:<br>1. The page was cached for too long<br>2. You stayed on the page too long (over 24 hours)<br><br>Please refresh the page and try again.', 'Security Error', ['response' => 403] );
     }
     
     // SECURITY CHECK 6: Honeypot check (anti-spam)

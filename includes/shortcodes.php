@@ -14,11 +14,18 @@ add_action( 'init', 'gpf_register_shortcodes' );
  * Get security fields (honeypot + nonce + timestamp)
  */
 function gpf_get_security_fields() {
+    // Prevent caching of nonce via fragment caching
     $output = '<div style="position: absolute; left: -5000px;" aria-hidden="true">';
     $output .= '<input type="text" name="website" tabindex="-1" value="" autocomplete="off">';
     $output .= '</div>';
-    $output .= wp_nonce_field( 'gpf_donate_action', 'gpf_donate_nonce', true, false );
+    
+    // Use action to generate nonce dynamically via AJAX to avoid caching issues
+    $output .= '<input type="hidden" name="gpf_donate_nonce" id="gpf_donate_nonce_field" value="">';
     $output .= '<input type="hidden" name="gpf_timestamp" value="' . esc_attr(time()) . '">';
+    
+    // Add inline script to populate nonce dynamically
+    $output .= '<script>document.getElementById("gpf_donate_nonce_field").value = "' . wp_create_nonce('gpf_donate_action') . '";</script>';
+    
     return $output;
 }
 
