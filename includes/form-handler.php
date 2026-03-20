@@ -99,7 +99,20 @@ function gpf_handle_donation_submission() {
     $amount = isset($_POST['amount']) ? gpf_sanitize_amount($_POST['amount']) : 0;
     if (!gpf_validate_amount($amount)) {
         gpf_log_security_event('invalid_amount', ['amount' => $_POST['amount']]);
-        wp_die( 'Invalid amount.', 'Invalid Input', ['response' => 400] );
+        
+        $admin_min = intval(get_option('gpf_min_amount', 10));
+        $admin_max = intval(get_option('gpf_max_amount', 500000));
+        $min = apply_filters('gpf_min_amount', $admin_min);
+        $max = apply_filters('gpf_max_amount', $admin_max);
+        
+        wp_die( 
+            sprintf('Invalid amount. Please enter an amount between %s and %s PKR.', 
+                number_format($min), 
+                number_format($max)
+            ), 
+            'Invalid Input', 
+            ['response' => 400] 
+        );
     }
     
     // VALIDATE AND SANITIZE: Name

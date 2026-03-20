@@ -24,6 +24,8 @@ add_action( 'admin_init', function() {
     register_setting( 'gpf_settings_group', 'gpf_secret_key' );
     register_setting( 'gpf_settings_group', 'gpf_token_url' );
     register_setting( 'gpf_settings_group', 'gpf_checkout_url' );
+    register_setting( 'gpf_settings_group', 'gpf_min_amount', ['type' => 'integer', 'default' => 10] );
+    register_setting( 'gpf_settings_group', 'gpf_max_amount', ['type' => 'integer', 'default' => 500000] );
 });
 
 /**
@@ -54,6 +56,20 @@ function gpf_settings_page_html() {
                     <th>Checkout URL</th>
                     <td>
                         <input type="text" name="gpf_checkout_url" value="<?php echo esc_attr(get_option('gpf_checkout_url', 'https://ipguat.apps.net.pk/Ecommerce/api/Transaction/PostTransaction')); ?>" class="large-text" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>Minimum Amount (PKR)</th>
+                    <td>
+                        <input type="number" name="gpf_min_amount" value="<?php echo esc_attr(get_option('gpf_min_amount', 10)); ?>" min="1" class="small-text" />
+                        <p class="description">Minimum donation amount in PKR. Default: 10</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Maximum Amount (PKR)</th>
+                    <td>
+                        <input type="number" name="gpf_max_amount" value="<?php echo esc_attr(get_option('gpf_max_amount', 500000)); ?>" min="1" class="regular-text" />
+                        <p class="description">Maximum donation amount in PKR. Default: 500000</p>
                     </td>
                 </tr>
             </table>

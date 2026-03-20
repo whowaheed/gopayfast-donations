@@ -36,9 +36,13 @@ function gpf_render_donation_form( $atts ) {
     wp_enqueue_style( 'gpf-style' );
     wp_enqueue_script( 'gpf-form-script' );
     
+    // Get admin defaults
+    $admin_min = intval(get_option('gpf_min_amount', 10));
+    $admin_max = intval(get_option('gpf_max_amount', 500000));
+    
     $atts = shortcode_atts([
-        'min_amount' => 10,
-        'max_amount' => 500000,
+        'min_amount' => $admin_min,
+        'max_amount' => $admin_max,
     ], $atts);
     
     ob_start();
@@ -58,9 +62,13 @@ function gpf_render_donation_bar( $atts ) {
     wp_enqueue_style( 'gpf-style' );
     wp_enqueue_script( 'gpf-bar-script' );
     
+    // Get admin defaults
+    $admin_min = intval(get_option('gpf_min_amount', 10));
+    $admin_max = intval(get_option('gpf_max_amount', 500000));
+    
     $atts = shortcode_atts([
-        'min_amount' => 10,
-        'max_amount' => 500000,
+        'min_amount' => $admin_min,
+        'max_amount' => $admin_max,
     ], $atts);
     
     ob_start();

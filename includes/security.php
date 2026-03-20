@@ -99,10 +99,20 @@ function gpf_validate_amount($amount) {
     }
     
     $amount = floatval($amount);
-    $min = apply_filters('gpf_min_amount', 10);
-    $max = apply_filters('gpf_max_amount', 500000);
+    
+    // Get min/max from admin settings (or use defaults)
+    $admin_min = intval(get_option('gpf_min_amount', 10));
+    $admin_max = intval(get_option('gpf_max_amount', 500000));
+    
+    $min = apply_filters('gpf_min_amount', $admin_min);
+    $max = apply_filters('gpf_max_amount', $admin_max);
     
     if ($amount < $min || $amount > $max) {
+        gpf_log_security_event('amount_out_of_range', [
+            'amount' => $amount,
+            'min' => $min,
+            'max' => $max
+        ]);
         return false;
     }
     
